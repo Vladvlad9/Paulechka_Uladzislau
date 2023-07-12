@@ -1,37 +1,29 @@
-const fio = prompt("Введите ФИО")
-const age = Number(prompt("Введите ваш возраст"))
+let fio = prompt("Введите ФИО");
+while(fio == '' || fio == null){
+    fio = prompt("Введите ФИО");
+}
+
+let age = prompt("Введите ваш возраст")
+while(isNaN(age) || age == null || age == ""){
+    age = Number(prompt("Введите ваш возраст"))
+}
+
 const sex = confirm("Ваш пол - мужской?")
 
-
-function get_fio(fio){
-    if(fio == ""){
-        return fio = "Фио не должно быть пустым";
-    }
-    return fio;
-}
-
 function get_sex(sex, age){
-    let pension
+    let pension;
     if(sex){
-        if(age > 63)
-            pension = "\nвы на пенсии: ДА"
-        else 
-            pension = "\nвы не на пенсии: Нет"
-        return `Мужской ${pension}`
+        pension = age > 63 ? "\nвы на пенсии: ДА" : "\nвы на пенсии: Нет";
+        return `Мужской ${pension}`;
     }
     else
-        if(age > 58)
-            pension = "\nвы на пенсии: Нет"
-        else 
-            pension = "\nвы не на пенсии: Да"
-        return `Женский ${pension}`
+        pension = age > 58 ? "\nвы на пенсии: ДА" : "\nвы на пенсии: Нет";
+        return `Женский ${pension}`;
 }
 
-
-
-alert(`ваше ФИО: ${fio}\n
-ваш возраст в годах: ${age}\n
-ваш возраст в днях: \n
-через 5 лет вам будет: ${age + 5}\n
+alert(`ваше ФИО: ${fio}
+ваш возраст в годах: ${age}
+ваш возраст в днях: ${age * 365}
+через 5 лет вам будет: ${age + 5}
 ваш пол: ${get_sex(sex, age)}
 `)
