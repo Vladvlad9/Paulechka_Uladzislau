@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    #item{
+      height: 50px;
+      width: 50px;
+      background: red;
+    }
+    #basket{
+      height: 150px;
+      width: 150px;
+      background: yellow;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="item" draggable="true"></div>
+  <hr>
+<!--  <div id="basket"></div>-->
+
+
+  <script>
+    const item = document.getElementById("item");
+    // const basket = document.getElementById("basket");
+
+
+    // item.addEventListener("dragstart", () => {
+    //   console.log("dragstart");
+    // })
+    //
+    // item.addEventListener("drag", () => {
+    //   console.log("drag");
+    // })
+    //
+    // item.addEventListener("dragend", () => {
+    //   console.log("dragend");
+    // })
+    //
+    // basket.addEventListener("dragenter", () => {
+    //   console.log("dragenter");
+    // })
+
+    // basket.addEventListener("dragover", (event) => {
+    //   event.preventDefault()
+    //   basket.style.background = "black"
+    //         console.log("dragover");
+    // })
+    //
+    // basket.addEventListener("dragleave", () => {
+    //   console.log("dragleave");
+    // })
+    //
+    // basket.addEventListener("drop", () => {
+    //   const getElement = item.cloneNode()
+    //   basket.appendChild(getElement)
+    //   console.warn("drop");
+    // })
+
+
+    item.onmousedown = function(event){
+      item.style.position = 'absolute';
+      item.style.zIndex = 1000;
+
+      document.body.append(item)
+
+      moveAt(event.pageX, event.pageY);
+
+      function moveAt(pageX, pageY) {
+      item.style.left = pageX - item.offsetWidth / 2 + 'px';
+      item.style.top = pageY - item.offsetHeight / 2 + 'px';
+
+      function onMouseMove(event) {
+        moveAt(event.pageX, event.pageY);
+      }
+
+      document.addEventListener('mousemove', onMouseMove);
+
+      item.onmouseup = function() {
+        document.removeEventListener('mousemove', onMouseMove);
+        item.onmouseup = null;
+      };
+  }
+    }
+
+  </script>
+
+</body>
+</html>
