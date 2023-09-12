@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>B4</title>
+</head>
+<body>
+  <script>
+    function createTag(tagName){
+      function textInTag(text){
+        const symbol = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&apos;',
+          '"': '&quot;'
+        };
+        const textSplit = text.split('');
+        const result = textSplit.map(char => symbol[char] || char).join('');
+
+        return `<${tagName}>${result}</${tagName}>`;
+      }
+      return textInTag;
+    }
+
+    const newTextH = createTag("H1")("СТИХИ");
+    const newTextInP = createTag("P")("Однажды в студёную зимнюю пору");
+    const newTextInP2 = createTag("P")("Вкусные M&M's");
+
+    console.log(newTextH)
+    console.log(newTextInP)
+    console.log(newTextInP2)
+
+  </script>
+</body>
+</html>
